@@ -13,13 +13,14 @@
  */
 
 // If this file is called directly, abort.
+
 if ( ! defined( 'ABSPATH' ) ) {
-die( 'not allowed' );
+    die( 'not allowed' );
 }
 
 add_filter('the_content', function ( $content ) {
-
-$message = '<p><b>This content is created by: ' . get_bloginfo( 'name' ) . ' (' . get_bloginfo( 'url' ) . ')</b></p>';
-return $content . $message;
-
+    if(is_singular("post")){
+        $message = '<p><b>This content is created by: ' . get_bloginfo( 'name' ) . ' (' . get_bloginfo( 'url' ) . ')</b></p>';
+        return $content . $message;
+    }
 }, 10 );
